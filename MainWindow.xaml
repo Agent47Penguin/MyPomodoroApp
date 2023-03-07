@@ -8,8 +8,8 @@
         Title="MyPomodoroApp" Height="450" Width="450" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="TimerLabel" Content="00:00" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontFamily="Arial" FontSize="48"/>
-        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="100,300,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="StartButton_Click"/>
-        <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="290,300,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Arial" Click="StopButton_Click"/>
+        <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="ToggleButton_Click"/>
+        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Click="ResetButton_Click" Margin="10,0,0,10"/>
 
 
     </Grid>

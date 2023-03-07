@@ -67,16 +67,32 @@ namespace MyPomodoroApp
         }
 
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            // Start the Tick
-            timer.Start();
+            if (timer.IsEnabled)
+            {
+                timer.Stop();
+                ToggleButton.Content = "Start";
+            }
+            else
+            {
+                timer.Start();
+                ToggleButton.Content = "Stop";
+            }
         }
 
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Stop the Tick
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {   
+            // Stop the Timer
             timer.Stop();
+
+            // Reset Minutes & Seconds
+            minutes = 25;
+            seconds = 0;
+
+            // Update Label
+            string time = string.Format("{0:00}:{1:00}", minutes, seconds);
+            TimerLabel.Content = time;
         }
     }
 }
