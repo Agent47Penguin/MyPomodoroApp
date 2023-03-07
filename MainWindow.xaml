@@ -12,6 +12,7 @@
         <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="ToggleButton_Click"/>
         <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Click="ResetButton_Click" Margin="10,0,0,10"/>
         <Button x:Name="SkipButton" Content="Skip" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Margin="0,0,10,10" Click="SkipButton_Click"/>
+        <Label x:Name="SessionLabel" Content="1/4" HorizontalAlignment="Left" Margin="30,325,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
 
 
     </Grid>

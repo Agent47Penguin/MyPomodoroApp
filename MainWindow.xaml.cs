@@ -28,7 +28,8 @@ namespace MyPomodoroApp
 
         // Store the statuses for the sessions
         private string workStatus = "Work";
-        private string breakStatus = "Break";
+        private string longBreakStatus = "Long Break";
+        private string shortBreakStatus = "Short Break";
 
         // Store the duration of each session
         private int pomodoroTime = 25;
@@ -99,16 +100,8 @@ namespace MyPomodoroApp
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {   
-            // Stop the timer
-            timer.Stop();
-
-            // Reset the number of minutes and seconds
-            minutes = pomodoroTime;
-            seconds = 0;
-
-            // Update Label
-            UpdateTimerLabel();
+        {
+            Reset();
         }
 
         private void SkipButton_Click(object sender, RoutedEventArgs e)
@@ -118,6 +111,26 @@ namespace MyPomodoroApp
 
             // Update timer label
             UpdateTimerLabel();
+        }
+
+        private void Reset()
+        {
+            // Stop the timer
+            timer.Stop();
+
+            // Reset the number of minutes and seconds
+            minutes = pomodoroTime;
+            seconds = 0;
+
+            // Update label
+            UpdateTimerLabel();
+
+            // Update Status Label
+            StatusLabel.Content = workStatus;
+
+            // Reset Current Session and session label
+            curSession = 1;
+            UpdateSessionLabel();
         }
 
         private void NextStage()
@@ -134,19 +147,43 @@ namespace MyPomodoroApp
             // Check the status of the timer and swithc to the next stage accordingly
             if (StatusLabel.Content.ToString() == workStatus)
             {
-                minutes = shortBreakTime;
-                StatusLabel.Content = breakStatus;
+                // If max sessions have been completed, start long break
+                if (curSession >= maxSessions)
+                {
+                    minutes = longBreakTime;
+                    StatusLabel.Content = longBreakStatus;
+                }
+                else
+                {
+                    minutes = shortBreakTime;
+                    StatusLabel.Content = shortBreakStatus;
+                } 
+            }
+            else if (StatusLabel.Content.ToString() == longBreakStatus)
+            {
+                Reset();
             }
             else
             {
                 minutes = pomodoroTime;
                 StatusLabel.Content = workStatus;
+
+                // One cycle has been completed
+                curSession++;
             }
+
+            // Update the session label
+            UpdateSessionLabel();
         }
 
         private void UpdateTimerLabel()
         {
             TimerLabel.Content = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        private void UpdateSessionLabel()
+        {
+            SessionLabel.Content = string.Format("{0}/{1}", curSession, maxSessions);
         }
     }
 }
