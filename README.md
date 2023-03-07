@@ -1,4 +1,4 @@
-# MyPomodoroTimer
+# MyPomodoroApp
 
 A simple and straightforward Pomodoro timer application, built using C# and WPF.
 
