@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyPomodoroApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MyPomodoroApp" Height="450" Width="450" Loaded="Window_Loaded">
     <Grid>
+        <Label x:Name="TimerLabel" Content="00:00" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontFamily="Arial" FontSize="48"/>
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="100,300,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="StartButton_Click"/>
+        <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="290,300,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Arial" Click="StopButton_Click"/>
+
 
     </Grid>
 </Window>
