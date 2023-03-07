@@ -5,15 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyPomodoroApp"
         mc:Ignorable="d"
-        Title="MyPomodoroApp" Height="450" Width="450" Loaded="Window_Loaded">
+        Title="MyPomodoroApp" Height="450" Width="450" Loaded="Window_Loaded" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="TimerLabel" Content="25:00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,152,0,0" FontFamily="Arial" FontSize="48"/>
-        <Label x:Name="StatusLabel" Content="Status" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
-        <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="ToggleButton_Click"/>
-        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Click="ResetButton_Click" Margin="10,0,0,10"/>
-        <Button x:Name="SkipButton" Content="Skip" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Margin="0,0,10,10" Click="SkipButton_Click"/>
-        <Label x:Name="SessionLabel" Content="1/4" HorizontalAlignment="Left" Margin="30,325,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
-
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="419*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50
+                           "/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--Header-->
+        <Grid x:Name="GridHeader" Background="#FF588157" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Grid.ColumnSpan="2">
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding ElementName=GridHeader, Path=ActualHeight}"></ColumnDefinition>
+                    <ColumnDefinition Width="{Binding ElementName=GridHeader, Path=ActualHeight}"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="MinimizeButton" Content="-" Click="MinimizeButton_Click" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FFDAD7CD" Margin="0,0,0,5" FontSize="24"/>
+                <Button x:Name="CloseButton" Content="x" Grid.Column="1" Click="CloseButton_Click" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FFDAD7CD" Margin="0,0,0,5" FontSize="24"></Button>
+            </Grid>
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding ElementName=GridHeader, Path=ActualHeight}"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SettingsButton" Content="~" FontFamily="Bahnschrift" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FFDAD7CD" FontSize="24"/>
+            </Grid>
+            <Label x:Name="AppNameLabel" Content="MyPomodoroApp" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bahnschrift" FontSize="18" Foreground="#FFDAD7CD"/>
+        </Grid>
+        <!--Content-->
+        <Grid Grid.Row="1" Background="#FF588157" Grid.ColumnSpan="2">
+            <Label x:Name="TimerLabel" Content="25:00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" FontFamily="Bahnschrift" FontSize="48" Foreground="#FFDAD7CD"/>
+            <Label x:Name="StatusLabel" Content="Status" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Foreground="#FFDAD7CD"/>
+            <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="36" Click="ToggleButton_Click" BorderBrush="#00707070" Background="#00DDDDDD" Foreground="#FFDAD7CD"/>
+            <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Bahnschrift" FontSize="24" Click="ResetButton_Click" Margin="10,0,0,10" BorderBrush="#00DAD7CD" Background="#00DDDDDD" Foreground="#FFDAD7CD"/>
+            <Button x:Name="SkipButton" Content="Skip" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Bahnschrift" FontSize="24" Margin="0,0,10,10" Click="SkipButton_Click" Foreground="#FFDAD7CD" Background="#00DDDDDD" BorderBrush="#00707070"/>
+            <Label x:Name="SessionLabel" Content="1/4" HorizontalAlignment="Left" Margin="27,328,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Foreground="#FFDAD7CD"/>
+        </Grid>
     </Grid>
 </Window>
