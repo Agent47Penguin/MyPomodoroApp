@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MyPomodoroApp" Height="450" Width="450" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="TimerLabel" Content="00:00" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontFamily="Arial" FontSize="48"/>
-        <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="ToggleButton_Click"/>
+        <Label x:Name="TimerLabel" Content="25:00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,152,0,0" FontFamily="Arial" FontSize="48"/>
+        <Label x:Name="StatusLabel" Content="Status" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
+        <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" Click="ToggleButton_Click"/>
         <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="24" Click="ResetButton_Click" Margin="10,0,0,10"/>
-
 
     </Grid>
 </Window>

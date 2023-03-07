@@ -30,13 +30,21 @@ namespace MyPomodoroApp
         // Create the Timer
         private DispatcherTimer timer = new DispatcherTimer();
         private int minutes = 25;
-        private int seconds = 00;
+        private int seconds = 0;
         private string time = string.Format("{0:00}:{1:00}", 25, 00);
+
+        private string workStatus = "Work";
+        private string breakStatus = "Break";
+
+        private int pomodoroTime = 25;
+        private int longBreakTime = 15;
+        private int shortBreakTime = 5;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set The Label
+            // Set The Labels
             TimerLabel.Content = time;
+            StatusLabel.Content = workStatus;
 
             // Initialize Timer Interval
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -57,7 +65,24 @@ namespace MyPomodoroApp
             if (minutes == 0 && seconds == 0)
             {
                 timer.Stop();
-                // Add code to handle the end of the Pomodoro session here
+                if (StatusLabel.Content.ToString() == workStatus)
+                {
+                    // Handle the end of the Pomodoro session here
+                    // Start the break timer
+                    minutes = shortBreakTime;
+                    seconds = 0;
+                    StatusLabel.Content = breakStatus;
+                    timer.Start();
+                }
+                else
+                {
+                    // Handle the end of the break here
+                    // Start the Pomodoro timer
+                    minutes = pomodoroTime;
+                    seconds = 0;
+                    StatusLabel.Content = workStatus;
+                    timer.Start();
+                }
             }
             else
             {
@@ -65,6 +90,8 @@ namespace MyPomodoroApp
                 TimerLabel.Content = time;
             }
         }
+
+
 
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -87,7 +114,7 @@ namespace MyPomodoroApp
             timer.Stop();
 
             // Reset Minutes & Seconds
-            minutes = 25;
+            minutes = pomodoroTime;
             seconds = 0;
 
             // Update Label
