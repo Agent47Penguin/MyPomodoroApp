@@ -17,54 +17,59 @@ using System.Windows.Threading;
 
 namespace MyPomodoroApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        // Create the Timer
+        private DispatcherTimer timer = new DispatcherTimer();
+
+        // Store the time remaining for the current session
+        private int minutes = 25;
+        private int seconds = 0;
+
+        // Store the statuses for the sessions
+        private string workStatus = "Work";
+        private string breakStatus = "Break";
+
+        // Store the duration of each session
+        private int pomodoroTime = 25;
+        private int longBreakTime = 15;
+        private int shortBreakTime = 5;
+
+        // Store the current session number and maximum number of sessions
+        private int curSession = 1;
+        private int maxSessions = 4;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        // Create the Timer
-        private DispatcherTimer timer = new DispatcherTimer();
-        private int minutes = 25;
-        private int seconds = 0;
-        private string time = string.Format("{0:00}:{1:00}", 25, 00);
-
-        private string workStatus = "Work";
-        private string breakStatus = "Break";
-
-        private int pomodoroTime = 25;
-        private int longBreakTime = 15;
-        private int shortBreakTime = 5;
-
-        private int curSession = 1;
-        private int maxSessions = 4;
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set The Labels
-            TimerLabel.Content = time;
+            // Set the initial values for the timer label and status label
+            UpdateTimerLabel();
             StatusLabel.Content = workStatus;
 
-            // Initialize Timer Interval
+            // Set the interval of the timer to 1 second
             timer.Interval = TimeSpan.FromSeconds(1);
 
-            // Handle the Tick
+            // Attach the Tick event handler to the timer
             timer.Tick += Timer_Tick;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            // Decrement a second per tick
             seconds--;
+            
+            // If the number of seconds is less than 0, decrement the minutes and reset the number of seconds
             if (seconds < 0)
             {
                 minutes--;
                 seconds = 59;
             }
 
+            // If the number of minutes and seconds is 0, move to the next stage.
             if (minutes == 0 && seconds == 0)
             {
                 NextStage();
@@ -72,13 +77,14 @@ namespace MyPomodoroApp
             }
             else
             {
-                string time = string.Format("{0:00}:{1:00}", minutes, seconds);
-                TimerLabel.Content = time;
+                // Update Timer Label
+                UpdateTimerLabel();
             }
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            // If the timer is currently running stop it
             if (timer.IsEnabled)
             {
                 timer.Stop();
@@ -86,6 +92,7 @@ namespace MyPomodoroApp
             }
             else
             {
+                // If the timer is not currently running, start it
                 timer.Start();
                 ToggleButton.Content = "Stop";
             }
@@ -93,32 +100,38 @@ namespace MyPomodoroApp
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {   
-            // Stop the Timer
+            // Stop the timer
             timer.Stop();
 
-            // Reset Minutes & Seconds
+            // Reset the number of minutes and seconds
             minutes = pomodoroTime;
             seconds = 0;
 
             // Update Label
-            string time = string.Format("{0:00}:{1:00}", minutes, seconds);
-            TimerLabel.Content = time;
+            UpdateTimerLabel();
         }
 
         private void SkipButton_Click(object sender, RoutedEventArgs e)
         {
+            // Move to the next stage
             NextStage();
 
-            string time = string.Format("{0:00}:{1:00}", minutes, seconds);
-            TimerLabel.Content = time;
+            // Update timer label
+            UpdateTimerLabel();
         }
 
         private void NextStage()
         {
+            // Stop the timer
             timer.Stop();
+            
+            // Reset the number of seconds
             seconds = 0;
+
+            // Update the toggle button
             ToggleButton.Content = "Start";
 
+            // Check the status of the timer and swithc to the next stage accordingly
             if (StatusLabel.Content.ToString() == workStatus)
             {
                 minutes = shortBreakTime;
@@ -129,6 +142,11 @@ namespace MyPomodoroApp
                 minutes = pomodoroTime;
                 StatusLabel.Content = workStatus;
             }
+        }
+
+        private void UpdateTimerLabel()
+        {
+            TimerLabel.Content = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 }
