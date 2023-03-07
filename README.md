@@ -11,6 +11,7 @@ A simple and straightforward Pomodoro timer application, built using C# and WPF.
 - Display current status (Work or Break)
 - Display time remaining
 - Session tracker to keep track of completed Pomodoro sessions
+- A somewhat visually appealing user interface
 
 
 ## Purpose
@@ -26,7 +27,6 @@ I started creating this app after learning about the Pomodoro Technique in my hi
 ## Upcoming Features
 
 - Customizable timing for Pomodoro sessions and breaks
-- A more visually appealing user interface
 - Sound cues to indicate the start and end of Pomodoro sessions and breaks
 
 
