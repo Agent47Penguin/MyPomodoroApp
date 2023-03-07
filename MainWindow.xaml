@@ -30,18 +30,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{Binding ElementName=GridHeader, Path=ActualHeight}"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SettingsButton" Content="~" FontFamily="Bahnschrift" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FFDAD7CD" FontSize="24"/>
+                <Button x:Name="SettingsButton" Content="~" FontFamily="Bahnschrift" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FFDAD7CD" FontSize="24" Click="SettingsButton_Click"/>
             </Grid>
             <Label x:Name="AppNameLabel" Content="MyPomodoroApp" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bahnschrift" FontSize="18" Foreground="#FFDAD7CD"/>
         </Grid>
         <!--Content-->
         <Grid Grid.Row="1" Background="#FF588157" Grid.ColumnSpan="2">
-            <Label x:Name="TimerLabel" Content="25:00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" FontFamily="Bahnschrift" FontSize="48" Foreground="#FFDAD7CD"/>
-            <Label x:Name="StatusLabel" Content="Status" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Foreground="#FFDAD7CD"/>
-            <Button x:Name="ToggleButton" Content="Start" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="36" Click="ToggleButton_Click" BorderBrush="#00707070" Background="#00DDDDDD" Foreground="#FFDAD7CD"/>
-            <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Bahnschrift" FontSize="18" Click="ResetButton_Click" Margin="10,0,0,10" BorderBrush="#00DAD7CD" Background="#00DDDDDD" Foreground="#7FDAD7CD"/>
-            <Button x:Name="SkipButton" Content="Skip" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Bahnschrift" FontSize="18" Margin="0,0,10,10" Click="SkipButton_Click" Foreground="#FFDAD7CD" Background="#00DDDDDD" BorderBrush="#00707070"/>
-            <Label x:Name="SessionLabel" Content="1/4" HorizontalAlignment="Left" Margin="20,340,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Foreground="#FFDAD7CD"/>
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="OwnsJournal"/>
         </Grid>
     </Grid>
 </Window>
