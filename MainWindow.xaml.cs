@@ -40,6 +40,9 @@ namespace MyPomodoroApp
         private int longBreakTime = 15;
         private int shortBreakTime = 5;
 
+        private int curSession = 1;
+        private int maxSessions = 4;
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Set The Labels
@@ -64,25 +67,8 @@ namespace MyPomodoroApp
 
             if (minutes == 0 && seconds == 0)
             {
-                timer.Stop();
-                if (StatusLabel.Content.ToString() == workStatus)
-                {
-                    // Handle the end of the Pomodoro session here
-                    // Start the break timer
-                    minutes = shortBreakTime;
-                    seconds = 0;
-                    StatusLabel.Content = breakStatus;
-                    timer.Start();
-                }
-                else
-                {
-                    // Handle the end of the break here
-                    // Start the Pomodoro timer
-                    minutes = pomodoroTime;
-                    seconds = 0;
-                    StatusLabel.Content = workStatus;
-                    timer.Start();
-                }
+                NextStage();
+                timer.Start();
             }
             else
             {
@@ -90,9 +76,6 @@ namespace MyPomodoroApp
                 TimerLabel.Content = time;
             }
         }
-
-
-
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +103,32 @@ namespace MyPomodoroApp
             // Update Label
             string time = string.Format("{0:00}:{1:00}", minutes, seconds);
             TimerLabel.Content = time;
+        }
+
+        private void SkipButton_Click(object sender, RoutedEventArgs e)
+        {
+            NextStage();
+
+            string time = string.Format("{0:00}:{1:00}", minutes, seconds);
+            TimerLabel.Content = time;
+        }
+
+        private void NextStage()
+        {
+            timer.Stop();
+            seconds = 0;
+            ToggleButton.Content = "Start";
+
+            if (StatusLabel.Content.ToString() == workStatus)
+            {
+                minutes = shortBreakTime;
+                StatusLabel.Content = breakStatus;
+            }
+            else
+            {
+                minutes = pomodoroTime;
+                StatusLabel.Content = workStatus;
+            }
         }
     }
 }
