@@ -43,5 +43,7 @@ With this Pomodoro timer app, you can easily manage your time and get more done 
 
 <p align="center">
   <img width="500" height="500" src="https://github.com/Agent47Penguin/MyPomodoroApp/blob/main/screenshots/promo_1.png?raw=true" alt="MyPomodoroApp Work"/>
+  
+  
   <img width="500" height="500" src="https://github.com/Agent47Penguin/MyPomodoroApp/blob/main/screenshots/promo_2.png?raw=true" alt="MyPomodoroApp Long Break"/>
 </p>
